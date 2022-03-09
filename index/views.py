@@ -9,13 +9,15 @@ def index(request):
 
 def plantilla(request):
     
-    template = loader.get_template('plantilla.html')
+    #template = loader.get_template('plantilla.html')
     
     datos = {
         'lista': ['primero', 'segundo', 'tercero'],
         'nombre': 'Juan'
     }
     
-    plantilla_generada = template.render(datos)
+    #plantilla_generada = template.render(datos)
     
-    return HttpResponse(plantilla_generada)
+    #return HttpResponse(plantilla_generada)
+    
+    return render(request, 'index/plantilla.html', datos)
