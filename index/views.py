@@ -5,7 +5,8 @@ from django.template import loader
 # Create your views here.
 
 def index(request):
-    return HttpResponse('<h1>Esta es una pag de django</h1>')
+    #return HttpResponse('<h1>Esta es una pag de django</h1>')
+    return render(request, 'index/index.html', {})
 
 def plantilla(request):
     
