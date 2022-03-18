@@ -10,7 +10,7 @@ urlpatterns = [
     
     #path('estudiante/', views.estudiante, name="estudiante"),
     path('estudiante/crear', views.crear_estudiante, name="crear_estudiante"),
-    #path('estudiante/borrar', views.borrar_estudiante, name="borrar_estudiante"),
-    path('estudiante/actualizar/<id>', views.actualizar_estudiante, name="actualizar_estudiante"),
+    path('estudiante/borrar/<int:id>', views.borrar_estudiante, name="borrar_estudiante"),
+    path('estudiante/actualizar/<int:id>', views.actualizar_estudiante, name="actualizar_estudiante"),
     path('estudiante/listado', views.listado_estudiantes, name="listado_estudiantes")
 ]

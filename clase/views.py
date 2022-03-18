@@ -88,5 +88,14 @@ def actualizar_estudiante(request, id):
            #return render(request, 'clase/listado_estudinates.html', {})
             return redirect('listado_estudiantes')
             
-    formulario = EstudianteFormulario()
-    return render(request, 'clase/actualizar_estudiante.html', {'formulario': formulario})      
+    formulario = EstudianteFormulario(initial={
+        'nombre' : estudiante.nombre,
+        'apellido' : estudiante.apellido, 
+        'email' : estudiante.email
+    })
+    return render(request, 'clase/actualizar_estudiante.html', {'formulario': formulario, 'estudiante': estudiante})      
+
+def borrar_estudiante(request, id):
+    estudiante = Estudiantes.objects.get(id=id)
+    estudiante.delete()
+    return redirect('listado_estudiantes')
