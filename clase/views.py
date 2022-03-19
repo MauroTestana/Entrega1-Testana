@@ -99,3 +99,4 @@ def borrar_estudiante(request, id):
     estudiante = Estudiantes.objects.get(id=id)
     estudiante.delete()
     return redirect('listado_estudiantes')
+
