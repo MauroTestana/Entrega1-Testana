@@ -1,0 +1,13 @@
+ {% extends 'index/index.html' %}
+
+ {% block header_index %}
+ {% endblock header_index %}
+
+ {% block formulario %}
+
+     <form action="" method="post">
+         {% csrf_token %}
+        {{forms.as_p}}
+         <button>Loguearse</button>
+     </form>    
+ {% endblock formulario %}
