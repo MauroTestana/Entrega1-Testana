@@ -22,11 +22,13 @@
             <div class="container">
                 <a class="navbar-brand" href={% url 'index'%}>Inicio</a>
                 <!-- <a class="btn btn-primary" href="#signup">Sign Up</a> -->
-                <a class="navbar-brand" href={% url 'plantilla'%}>Plantilla</a>
+                <!--<a class="navbar-brand" href={% url 'plantilla'%}>Plantilla</a> -->
                 <a class="navbar-brand" href={% url 'formulario_curso'%}>Formulario</a>
                 <a class="navbar-brand" href={% url 'busqueda_curso'%}>Buscador</a>
                 <a class="navbar-brand" href={% url 'listado_estudiantes'%}>Estudiantes</a>
                 <a class="navbar-brand" href={% url 'login'%}>Login</a>
+                <a class="navbar-brand" href={% url 'logout'%}>Logout</a>
+                <a class="navbar-brand" href={% url 'registrar'%}>Registrarse</a>
             </div>
         </nav>
 
@@ -48,7 +50,14 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Bienvenidos a la página de inicio</h1>
+                            <h1 class="mb-5">
+                                {% if msj %}
+                                    {{msj}}
+                                    {% else %}
+                                    Bienvenido al inicio
+                                {% endif %}
+                            </h1>
+
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->

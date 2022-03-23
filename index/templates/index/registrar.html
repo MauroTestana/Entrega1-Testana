@@ -1,4 +1,4 @@
- {% extends 'index/index.html' %}
+{% extends 'index/index.html' %}
 
  {% block header_index %}
  {% endblock header_index %}
@@ -12,6 +12,6 @@
      <form action="" method="post">
          {% csrf_token %}
         {{form.as_p}}
-         <button>Loguearse</button>
+         <button>Registarse</button>
      </form>    
  {% endblock formulario %}

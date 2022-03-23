@@ -1,8 +1,10 @@
+from re import U
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.contrib.auth import login as django_login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
 
 # Create your views here.
 
@@ -28,7 +30,43 @@ def plantilla(request):
 
 def login(request):
     
-    form = AuthenticationForm()
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)    
+        
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+                django_login(request, user)
+                return render(request, 'index/index.html', {'msj': 'Te logueaste correctamente'})
+            else:
+                return render(request, 'index/login.html', {'form': form, 'msj': 'No se autenticó'})
+            
+            
+        else:
+            return render(request, 'index/login.html', {'form': form, 'msj': 'Datos con formato incorrectos'})
+        
+    else:
+        form = AuthenticationForm()
     
-    #return render(request, 'index/index.html', {})
-    return redirect('login', {})
+        return render(request, 'index/login.html', {'form': form, 'msj':''})
+        #return redirect('login', {})
+        
+        
+def registrar(request):
+    
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            form.save()
+            return render(request, 'index/index.html', {'msj': f'Se creo el usuario {username}'})
+        else:
+             return render(request, 'index/registrar.html', {'msj': ''})    
+    
+    form = UserCreationForm()
+    return render(request,  'index/registrar.html', {'form': form, 'msj':''})
