@@ -28,5 +28,7 @@ def plantilla(request):
 
 def login(request):
     
+    form = AuthenticationForm()
+    
     #return render(request, 'index/index.html', {})
     return redirect('login', {})
