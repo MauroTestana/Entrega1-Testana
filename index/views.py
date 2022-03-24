@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.decorators import login_required
+
+from index.forms import NuestraCreacionUser
 
 
 # Create your views here.
@@ -59,14 +62,14 @@ def login(request):
 def registrar(request):
     
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = NuestraCreacionUser(request.POST)
         
         if form.is_valid():
             username = form.cleaned_data['username']
             form.save()
             return render(request, 'index/index.html', {'msj': f'Se creo el usuario {username}'})
         else:
-             return render(request, 'index/registrar.html', {'msj': ''})    
+             return render(request, 'index/registrar.html', {'form':form, 'msj': ''})    
     
-    form = UserCreationForm()
+    form = NuestraCreacionUser()
     return render(request,  'index/registrar.html', {'form': form, 'msj':''})

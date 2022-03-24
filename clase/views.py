@@ -5,6 +5,8 @@ from django.shortcuts import redirect
 from clase.models import Curso, Estudiantes
 from clase.forms import CursoFormulario, BusquedaCurso, EstudianteFormulario
 import random
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -49,6 +51,8 @@ def busqueda_curso(request):
     
     # CRUD basico
     
+
+    
 def listado_estudiantes(request):
     listado_estudiantes = Estudiantes.objects.all()
     return render(
@@ -57,7 +61,7 @@ def listado_estudiantes(request):
     )
     
     
-    
+@login_required  
 def crear_estudiante(request):
     if request.method == 'POST':
         formulario = EstudianteFormulario(request.POST)
