@@ -21,6 +21,6 @@ class EditFullUser(forms.Form):
         password2 = forms.CharField(label='Repetir contraseña', widget=forms.PasswordInput(), required=False)
         first_name = forms.CharField(label='Nombre', max_length=20)
         last_name = forms.CharField(label='Apellido', max_length=20)
-        avatar = forms.ImageField(null=True, Blank=True, required=False)
+        avatar = forms.ImageField(required=False)
         link = forms.URLField(required=False)
         more_description = forms.CharField(max_length=100, required=False)

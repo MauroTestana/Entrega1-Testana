@@ -1,0 +1,19 @@
+{% extends 'index/index.html' %}
+
+ {% block header_index %}
+ {% endblock header_index %}
+
+ {% block formulario %}
+
+    {% if msj %}
+        {{msj}}
+    {% endif %}
+
+     <form action={% url 'editar_usuario'%} method="post" enctype='multipart/form-data'> 
+         {% csrf_token %}
+        {{form.as_p}}
+         <button>Guadar cambios</button>
+     </form>    
+ {% endblock formulario %}
+
+ 
