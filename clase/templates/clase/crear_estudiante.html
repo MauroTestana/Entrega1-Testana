@@ -6,6 +6,10 @@
 
 {% block formulario %}
 
+<p>
+    <a href={% url 'listado_estudiantes' %}>Volver</a>
+</p>
+
     <form action={% url 'crear_estudiante' %} method="post">
         {% csrf_token %}
 

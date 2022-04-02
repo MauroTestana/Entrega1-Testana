@@ -1,0 +1,24 @@
+{% extends 'index/index.html' %}
+
+{% block header_index %}
+    <a href={% url 'crear_estudiante'%}>Crear un estudiante</a>
+{% endblock header_index %}
+
+{% block buscador_j %}
+    
+   <p>
+       <a href={% url 'listado_estudiantes'%}>Volver</a>
+   </p>
+
+   <p>
+        <li>Nombre: {{object.nombre}}</li>
+        <li>Apellido: {{object.apellido}}</li>
+        <li>Email: {{object.email}}</li>
+   </p>
+
+    
+
+{% endblock buscador_j %}
+
+{% block body_block %}
+{% endblock body_block %}

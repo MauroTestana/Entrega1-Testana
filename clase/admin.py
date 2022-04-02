@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from clase.models import Curso, Entegrables, Estudiantes, Profesor
+from clase.models import Curso, Estudiantes #Entegrables, #Profesor
 
 # Register your models here.
 
 admin.site.register(Estudiantes)
-admin.site.register(Profesor)
+#admin.site.register(Profesor)
 admin.site.register(Curso)
-admin.site.register(Entegrables)
+#admin.site.register(Entegrables)

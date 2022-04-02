@@ -7,15 +7,19 @@ from clase.forms import CursoFormulario, BusquedaCurso, EstudianteFormulario
 import random
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.detail import DetailView
+
 
 # Create your views here.
 
+@login_required
 def nuevo_curso(request):
     camada = random.randrange(1500, 3000)
     nuevo_curso = Curso(nombre='Curso Python', camada=camada)
     nuevo_curso.save()
     return HttpResponse(f"Se creo  el curso {nuevo_curso.nombre} camada {nuevo_curso.camada}")
 
+@login_required
 def formulario_curso(request):
     
     if request.method == 'POST':
@@ -33,7 +37,7 @@ def formulario_curso(request):
     
     #return render(request, 'clase/formulario_curso.html', {})
 
-
+@login_required
 def busqueda_curso(request):
     cursos_buscados = []
     dato = request.GET.get('partial_curso', None)
@@ -52,7 +56,7 @@ def busqueda_curso(request):
     # CRUD basico
     
 
-    
+@login_required    
 def listado_estudiantes(request):
     listado_estudiantes = Estudiantes.objects.all()
     return render(
@@ -76,6 +80,7 @@ def crear_estudiante(request):
     formulario = EstudianteFormulario()
     return render(request, 'clase/crear_estudiante.html', {'formulario': formulario})   
 
+@login_required
 def actualizar_estudiante(request, id):
     
     estudiante = Estudiantes.objects.get(id=id)
@@ -99,8 +104,12 @@ def actualizar_estudiante(request, id):
     })
     return render(request, 'clase/actualizar_estudiante.html', {'formulario': formulario, 'estudiante': estudiante})      
 
+@login_required
 def borrar_estudiante(request, id):
     estudiante = Estudiantes.objects.get(id=id)
     estudiante.delete()
     return redirect('listado_estudiantes')
 
+class DetalleEstudiante(LoginRequiredMixin, DetailView):
+    model = Estudiantes
+    template_name = "clase/detalle_estudiante.html"
