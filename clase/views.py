@@ -72,7 +72,7 @@ def crear_estudiante(request):
         
         if formulario.is_valid():
             data = formulario.cleaned_data
-            nuevo_estudiante = Estudiantes(nombre=data['nombre'], apellido=data['apellido'], email=data['email'])
+            nuevo_estudiante = Estudiantes(nombre=data['nombre'], apellido=data['apellido'], email=data['email'], pic=data['pic'])
             nuevo_estudiante.save()
            #return render(request, 'clase/listado_estudinates.html', {})
             return redirect('listado_estudiantes')

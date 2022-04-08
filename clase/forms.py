@@ -13,3 +13,4 @@ class EstudianteFormulario(forms.Form):
     nombre = forms.CharField(max_length=20)
     apellido = forms.CharField(max_length=25)
     email = forms.EmailField()
+    pic = forms.ImageField(required=False)
