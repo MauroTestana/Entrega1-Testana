@@ -68,7 +68,7 @@ def listado_estudiantes(request):
 @login_required  
 def crear_estudiante(request):
     if request.method == 'POST':
-        formulario = EstudianteFormulario(request.POST)
+        formulario = EstudianteFormulario(request.POST, request.FILES)
         
         if formulario.is_valid():
             data = formulario.cleaned_data
