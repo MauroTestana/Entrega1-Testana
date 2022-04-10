@@ -1,4 +1,5 @@
 from django import forms
+from ckeditor.fields import RichTextFormField
 
 
 class CursoFormulario(forms.Form):
@@ -11,6 +12,6 @@ class BusquedaCurso(forms.Form):
     
 class EstudianteFormulario(forms.Form):
     nombre = forms.CharField(max_length=20)
-    apellido = forms.CharField(max_length=25)
+    apellido = RichTextFormField(required=False)
     email = forms.EmailField()
     pic = forms.ImageField(required=False)

@@ -12,9 +12,10 @@
 
    <p>
         <li>Nombre: {{object.nombre}}</li>
-        <li>Apellido: {{object.apellido}}</li>
+        <li>Apellido: {{object.apellido | safe }}</li>
         <li>Email: {{object.email}}</li>
         <li>Pic: {{object.pic}}</li>
+        <li>Fecha: {{object.fecha | date:'d-m-Y H:m'}}</li>
    </p>
 
     
