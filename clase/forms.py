@@ -10,8 +10,8 @@ class BusquedaCurso(forms.Form):
     partial_curso = forms.CharField(label='Buscador',max_length=20)
     
     
-class EstudianteFormulario(forms.Form):
-    nombre = forms.CharField(max_length=20)
-    apellido = RichTextFormField(required=False)
-    email = forms.EmailField()
+class PostFormulario(forms.Form):
+    titulo = forms.CharField(max_length=20)
+    post = RichTextFormField(required=False)
+    autor = forms.CharField(max_length=20)
     pic = forms.ImageField(required=False)

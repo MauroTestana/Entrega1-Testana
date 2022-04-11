@@ -1,0 +1,24 @@
+{% extends 'index/index.html' %}
+
+{% block header_index %}
+    <a href={% url 'crear_post'%}>Crear un post</a>
+{% endblock header_index %}
+
+{% block buscador_j %}
+    
+   
+    {% for post in listado_post %}
+        <li>
+            {{post}} |
+            <a href={% url 'detalle_post' post.id %}>Leer más</a> |
+
+            <a href={% url 'actualizar_post' post.id %}>Editar</a> |
+            <a href={% url 'borrar_post' post.id %}>Borrar</a>
+        </li>
+    {% endfor %}
+    
+
+{% endblock buscador_j %}
+
+{% block body_block %}
+{% endblock body_block %}

@@ -2,8 +2,8 @@ from ast import Return
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
-from clase.models import Curso, Estudiantes
-from clase.forms import CursoFormulario, BusquedaCurso, EstudianteFormulario
+from clase.models import Curso, Post
+from clase.forms import CursoFormulario, BusquedaCurso, PostFormulario
 import random
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -57,59 +57,59 @@ def busqueda_curso(request):
     
 
 @login_required    
-def listado_estudiantes(request):
-    listado_estudiantes = Estudiantes.objects.all()
+def listado_post(request):
+    listado_post = Post.objects.all()
     return render(
-        request, "clase/listado_estudiantes.html",
-        {'listado_estudiantes': listado_estudiantes} 
+        request, "clase/listado_post.html",
+        {'listado_post': listado_post} 
     )
     
     
 @login_required  
-def crear_estudiante(request):
+def crear_post(request):
     if request.method == 'POST':
-        formulario = EstudianteFormulario(request.POST, request.FILES)
+        formulario = PostFormulario(request.POST, request.FILES)
         
         if formulario.is_valid():
             data = formulario.cleaned_data
-            nuevo_estudiante = Estudiantes(nombre=data['nombre'], apellido=data['apellido'], email=data['email'], pic=data['pic'])
-            nuevo_estudiante.save()
+            nuevo_post = Post(titulo=data['titulo'], post=data['post'], autor=data['autor'], pic=data['pic'])
+            nuevo_post.save()
            #return render(request, 'clase/listado_estudinates.html', {})
-            return redirect('listado_estudiantes')
+            return redirect('listado_post')
             
-    formulario = EstudianteFormulario()
-    return render(request, 'clase/crear_estudiante.html', {'formulario': formulario})   
+    formulario = PostFormulario()
+    return render(request, 'clase/crear_post.html', {'formulario': formulario})   
 
 @login_required
-def actualizar_estudiante(request, id):
+def actualizar_post(request, id):
     
-    estudiante = Estudiantes.objects.get(id=id)
+    post = Post.objects.get(id=id)
     
     if request.method == 'POST':
-        formulario = EstudianteFormulario(request.POST)
+        formulario = PostFormulario(request.POST)
         
         if formulario.is_valid():
             data = formulario.cleaned_data
-            estudiante.nombre = data['nombre']
-            estudiante.apellido = data['apellido']
-            estudiante.email = data['email']
-            estudiante.save()
-           #return render(request, 'clase/listado_estudinates.html', {})
-            return redirect('listado_estudiantes')
+            post.titulo = data['titulo']
+            post.post = data['post']
+            post.autor = data['autor']
+            post.save()
+
+            return redirect('listado_post')
             
-    formulario = EstudianteFormulario(initial={
-        'nombre' : estudiante.nombre,
-        'apellido' : estudiante.apellido, 
-        'email' : estudiante.email
+    formulario = PostFormulario(initial={
+        'titulo' : post.titulo,
+        'post' : post.post, 
+        'autor' : post.autor
     })
-    return render(request, 'clase/actualizar_estudiante.html', {'formulario': formulario, 'estudiante': estudiante})      
+    return render(request, 'clase/actualizar_post.html', {'formulario': formulario, 'post': post})      
 
 @login_required
-def borrar_estudiante(request, id):
-    estudiante = Estudiantes.objects.get(id=id)
-    estudiante.delete()
-    return redirect('listado_estudiantes')
+def borrar_post(request, id):
+    post = Post.objects.get(id=id)
+    post.delete()
+    return redirect('listado_post')
 
-class DetalleEstudiante(LoginRequiredMixin, DetailView):
-    model = Estudiantes
-    template_name = "clase/detalle_estudiante.html"
+class DetallePost(LoginRequiredMixin, DetailView):
+    model = Post
+    template_name = "clase/detalle_post.html"

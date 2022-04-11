@@ -1,19 +1,19 @@
 {% extends 'index/index.html' %}
 
 {% block header_index %}
-    <a href={% url 'crear_estudiante'%}>Crear un estudiante</a>
+    <a href={% url 'crear_post'%}>Crear un post</a>
 {% endblock header_index %}
 
 {% block buscador_j %}
     
    <p>
-       <a href={% url 'listado_estudiantes'%}>Volver</a>
+       <a href={% url 'listado_post'%}>Volver</a>
    </p>
 
    <p>
-        <li>Nombre: {{object.nombre}}</li>
-        <li>Apellido: {{object.apellido | safe }}</li>
-        <li>Email: {{object.email}}</li>
+        <li>Titulo: {{object.titulo}}</li>
+        <li>Post: {{object.post | safe }}</li>
+        <li>Autor: {{object.autor}}</li>
         <li>Pic: {{object.pic}}</li>
         <li>Fecha: {{object.fecha | date:'d-m-Y H:m'}}</li>
    </p>

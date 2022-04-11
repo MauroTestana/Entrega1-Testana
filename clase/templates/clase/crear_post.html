@@ -7,10 +7,10 @@
 {% block formulario %}
 
 <p>
-    <a href={% url 'listado_estudiantes' %}>Volver</a>
+    <a href={% url 'listado_post' %}>Volver</a>
 </p>
 
-    <form action={% url 'crear_estudiante' %} method="post", enctype="multipart/form-data">
+    <form action={% url 'crear_post' %} method="post", enctype="multipart/form-data">
 
         <img src="{{object.pic.url}}" alt="">
 
@@ -21,7 +21,7 @@
             {{formulario.as_table}}
         </table>
 
-        <input type="submit" placeholder="Crear">
+        <input type="submit" placeholder="Postear">
     </form>
 
 {% endblock formulario %}

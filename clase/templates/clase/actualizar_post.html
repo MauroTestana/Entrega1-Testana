@@ -6,7 +6,7 @@
 
 {% block formulario %}
 
-    <form action={% url 'actualizar_estudiante' estudiante.id %} method="post">
+    <form action={% url 'actualizar_post' post.id %} method="post">
         {% csrf_token %}
 
         <table>
