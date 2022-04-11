@@ -9,7 +9,7 @@
    
     {% for estudiante in listado_estudiantes %}
         <li>
-            <a href={% url 'detalle_estudiante' estudiante.id %}>{{estudiante}}</a> |
+            <a href={% url 'detalle_estudiante' estudiante.id %}>Leer más</a> |
 
             <!--{{estudiante}}-->
             <a href={% url 'actualizar_estudiante' estudiante.id %}>Editar</a> |
