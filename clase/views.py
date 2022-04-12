@@ -86,13 +86,14 @@ def actualizar_post(request, id):
     post = Post.objects.get(id=id)
     
     if request.method == 'POST':
-        formulario = PostFormulario(request.POST)
+        formulario = PostFormulario(request.POST, request.FILES)
         
         if formulario.is_valid():
             data = formulario.cleaned_data
             post.titulo = data['titulo']
             post.post = data['post']
             post.autor = data['autor']
+            post.pic = data['pic']
             post.save()
 
             return redirect('listado_post')
@@ -100,7 +101,8 @@ def actualizar_post(request, id):
     formulario = PostFormulario(initial={
         'titulo' : post.titulo,
         'post' : post.post, 
-        'autor' : post.autor
+        'autor' : post.autor,
+        'pic' : post.pic
     })
     return render(request, 'clase/actualizar_post.html', {'formulario': formulario, 'post': post})      
 
@@ -113,3 +115,4 @@ def borrar_post(request, id):
 class DetallePost(LoginRequiredMixin, DetailView):
     model = Post
     template_name = "clase/detalle_post.html"
+    

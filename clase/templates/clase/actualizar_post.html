@@ -6,14 +6,18 @@
 
 {% block formulario %}
 
-    <form action={% url 'actualizar_post' post.id %} method="post">
+    <form action={% url 'actualizar_post' post.id %} method="post", enctype="multipart/form-data">
+
+        <img src="{{object.pic.url}}" alt="">
+
         {% csrf_token %}
 
         <table>
+            {{formulario.media}}
             {{formulario.as_table}}
          </table>
 
-        <input type="submit" placeholder="actualizar">
+        <input type="submit" placeholder="Actualizar">
     </form>
 
 {% endblock formulario %}

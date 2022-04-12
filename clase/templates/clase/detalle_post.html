@@ -14,7 +14,11 @@
         <li>Titulo: {{object.titulo}}</li>
         <li>Post: {{object.post | safe }}</li>
         <li>Autor: {{object.autor}}</li>
-        <li>Pic: {{object.pic}}</li>
+        {% if object.pic %}
+            <li>Pic: <img src="{{object.pic.url | safe }}" alt="no hay imagen aún" height='50'></li>
+        {% else %}
+            <li>No hay imagen en el post</li>
+        {% endif %}
         <li>Fecha: {{object.fecha | date:'d-m-Y H:m'}}</li>
    </p>
 
