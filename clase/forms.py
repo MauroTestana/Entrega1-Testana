@@ -6,8 +6,8 @@ class CursoFormulario(forms.Form):
     curso = forms.CharField(max_length=20)
     camada = forms.IntegerField()
     
-class BusquedaCurso(forms.Form):
-    partial_curso = forms.CharField(label='Buscador',max_length=20)
+class BusquedaPost(forms.Form):
+    partial_post = forms.CharField(label='Buscador',max_length=20)
     
     
 class PostFormulario(forms.Form):

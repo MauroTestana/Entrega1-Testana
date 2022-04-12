@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from clase.models import Curso, Post
-from clase.forms import CursoFormulario, BusquedaCurso, PostFormulario
+from clase.forms import CursoFormulario, BusquedaPost, PostFormulario
 import random
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -38,17 +38,17 @@ def formulario_curso(request):
     #return render(request, 'clase/formulario_curso.html', {})
 
 @login_required
-def busqueda_curso(request):
-    cursos_buscados = []
-    dato = request.GET.get('partial_curso', None)
+def busqueda_post(request):
+    post_buscados = []
+    dato = request.GET.get('partial_post', None)
     
     if dato is not None:
-        cursos_buscados = Curso.objects.filter(nombre__icontains=dato)
+        post_buscados = Post.objects.filter(titulo__icontains=dato)
     
-    buscador = BusquedaCurso()
+    buscador = BusquedaPost()
     return render(
         request, "clase/buscador.html",
-        {'buscador': buscador, 'cursos_buscados': cursos_buscados, 'dato': dato}
+        {'buscador': buscador, 'post_buscados': post_buscados, 'dato': dato}
     )
     
     

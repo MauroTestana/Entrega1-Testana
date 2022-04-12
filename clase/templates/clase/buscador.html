@@ -5,7 +5,7 @@
 
 {% block buscador_j %}
     
-    <form action={% url 'busqueda_curso' %} method="get">
+    <form action={% url 'busqueda_post' %} method="get">
         {% csrf_token %}
 
         <table>
@@ -17,9 +17,10 @@
 
     {% if dato %}
         Se busco por el dato {{dato}}
-        {% for curso in cursos_buscados %}
+        {% for post in post_buscados %}
         <li>
-            {{curso}}
+            {{post}} |
+            <a href={% url 'detalle_post' post.id %}>Leer más</a>
         </li>
         {% endfor %}
     {% else %}
