@@ -2,8 +2,8 @@ from ast import Return
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
-from clase.models import Curso, Post
-from clase.forms import CursoFormulario, BusquedaPost, PostFormulario
+from clase.models import Post
+from clase.forms import BusquedaPost, PostFormulario
 import random
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,27 +12,7 @@ from django.views.generic.detail import DetailView
 
 # Create your views here.
 
-@login_required
-def nuevo_curso(request):
-    camada = random.randrange(1500, 3000)
-    nuevo_curso = Curso(nombre='Curso Python', camada=camada)
-    nuevo_curso.save()
-    return HttpResponse(f"Se creo  el curso {nuevo_curso.nombre} camada {nuevo_curso.camada}")
 
-@login_required
-def formulario_curso(request):
-    
-    if request.method == 'POST':
-        formulario = CursoFormulario(request.POST)
-        
-        if formulario.is_valid():
-            data = formulario.cleaned_data
-            nuevo_curso = Curso(nombre=data['curso'], camada=data['camada'])
-            nuevo_curso.save()
-            return render(request, 'index/index.html', {'nuevo_curso': nuevo_curso})
-            
-    formulario = CursoFormulario()
-    return render(request, 'clase/formulario_curso.html', {'formulario': formulario})
     
     
     #return render(request, 'clase/formulario_curso.html', {})

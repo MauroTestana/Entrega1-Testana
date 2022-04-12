@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from clase.models import Curso, Post 
+from clase.models import Post 
 
 # Register your models here.
 
 admin.site.register(Post)
 
-admin.site.register(Curso)
+
 
